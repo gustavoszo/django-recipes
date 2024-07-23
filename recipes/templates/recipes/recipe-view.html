@@ -1,0 +1,18 @@
+{% extends 'global/base.html' %}
+
+{% block 'title' %}
+Recipes | {{recipe.title}}
+{% endblock %}
+
+{% block 'content' %}
+{% include 'global/includes/form-search.html' %}
+
+<main class="main-content-container mt-5 mb-4">
+    <div class="main-content main-content-detail container">
+
+       {% include 'recipes/includes/recipe.html' %}
+
+    </div>
+</main>
+
+{% endblock %}

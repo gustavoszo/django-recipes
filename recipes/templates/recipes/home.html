@@ -1,0 +1,22 @@
+{% extends 'global/base.html' %}
+
+{% block 'title' %}
+Recipes | Home
+{% endblock %}
+
+{% block 'content' %}
+{% include 'global/includes/form-search.html' %}
+
+<main class="main-content-container mt-5 mb-4">
+    <div class="main-content main-content-list container">
+
+        {% for recipe in recipes %}
+            {% include 'recipes/includes/recipe.html' %}
+        {% empty %}
+            <h1 class="text-center">Nenhuma receita encontrada aqui</h1>
+        {% endfor %}
+       
+    </div>
+</main>
+
+{% endblock %}

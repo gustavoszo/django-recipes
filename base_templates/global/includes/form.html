@@ -1,0 +1,38 @@
+<div class="main-content center container mt-5 mb-4"> 
+    <!-- Eu fiz essa condição para caso não passar nada no contexto, envia o POST para a mesma view -->
+    <form action="{% if form_action%} {% url form_action %} {% endif %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-content col-md-12 row">
+            {% for field in form %}
+            <div class=" {{field.field.widget.attrs.class}} col-md-6 mb-3">
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    
+                    {% if field.help_text %}
+                    <p class="help-text">{{ field.help_text }}</p>
+                    {% endif %}
+                    
+                    <!-- {{ field.errors }} -->
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                    
+                    {% if field.name == 'cover' and field.value.url %}
+                        <div class="span-2">
+                          <img src="{{ field.value.url }}" alt="Capa para {{ recipe.title }}">
+                        </div>
+                    {% endif %}
+            
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="form-group">
+                <button type="submit" class="btn">Enviar</button>
+            </div>
+        </div>
+    </form>
+</div>

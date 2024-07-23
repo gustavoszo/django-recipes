@@ -1,0 +1,40 @@
+{% extends 'global/base.html' %}
+
+{% block 'title' %}
+Recipes | Dashboard
+{% endblock %}
+
+{% block 'content' %}
+{% include 'global/includes/form-search.html' %}
+
+<div class="main-content container mt-5 mb-4">
+    <h2 class="text-center authors-title">Dashboard ({{user}})</h2>
+
+    <div class="author-dashboard">
+        <h3>Suas receitas</h3>
+
+        <ul>
+            {% for recipe in recipes %}
+                <li>
+                    <div class="dashboard-actions">
+                        <a href="{% url 'authors:dashboard_recipe_edit' recipe.id %}">{{ recipe.title }}</a>
+                        <form action="{% url 'authors:dashboard_recipe_delete' %}" method='POST' class="form-delete">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{recipe.id}}">
+                            <button class="plaintext-button" type="submit">❌</button>
+                        </form>
+                    </div>
+                </li>
+            {% empty %}
+                <li>
+                    <p>Você ainda não tem receitas, crie uma</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+
+{% endblock %}
+

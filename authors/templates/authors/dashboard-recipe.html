@@ -1,0 +1,17 @@
+{% extends 'global/base.html' %}
+
+{% block 'title' %}
+Recipes | Dashboard - Recipe
+{% endblock %}
+
+{% block 'content' %}
+{% include 'global/includes/form-search.html' %}
+
+<div class="main-content container mt-5 mb-4">
+    <h2 class="text-center authors-title">Dashboard Recipe</h2>
+
+    {% include 'global/includes/form.html' %}
+</div>
+
+{% endblock %}
+
